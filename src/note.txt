@@ -1,0 +1,59 @@
+import React, { useState, useEffect } from 'react';
+import MovieList from './components/MovieList';
+import Filter from './components/Filter';
+import AddMovie from './components/AddMovie';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+const App = () => {
+  const [films, setFilms] = useState([
+    {
+      titre: 'The Chi',
+      description: 'Description du film 1',
+      posterURL: 'https://fr.web.img6.acsta.net/pictures/17/11/21/10/28/3277635.jpg',
+      note: 4,
+    },
+    {
+      titre: 'Menace to Society',
+      description: `Menace to Society (ou Menace II Society selon la graphie de l'affiche) est un film américain réalisé par Albert et Allen Hughes sorti en 1993.`,
+      posterURL: 'https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcRQmgVerc8NNR5FMKe_bZYd5EHDAf0jXh29U0doDHxqoAghsVrF',
+      note: 6,
+    },
+    {
+      titre: 'Bad Boys',
+      description: `Bad Boys : Flics de choc ou Mauvais Garçons au Québec (Bad Boys) est une comédie policière américaine réalisée par Michael Bay et sortie en 1995.`,
+      posterURL: 'https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcRGmVmervo24O6Bz8bjtJbkpmG5S7v390lt8gIXwmnSfxKnHDcx',
+      note: 5,
+    },
+  ]);
+
+  const [filmsFiltres, setFilmsFiltres] = useState(films);
+
+  const filtrerFilms = (filtreTitre, filtreNote) => {
+    const filmsFiltres = films.filter((film) => {
+      return (
+        film.titre.toLowerCase().includes(filtreTitre.toLowerCase()) &&
+        film.note >= filtreNote
+      );
+    });
+    setFilmsFiltres(filmsFiltres);
+  };
+
+  useEffect(() => {
+    setFilmsFiltres(films);
+  }, [films]);
+
+  const addFilm = (nouveauFilm) => {
+    setFilms([...films, nouveauFilm]);
+  };
+
+  return (
+    <div className="container mt-4">
+      <h1>Application de Cinéma</h1>
+      <Filter handleFilter={filtrerFilms} />
+      <MovieList films={filmsFiltres} />
+      <AddMovie addFilm={addFilm} />
+    </div>
+  );
+};
+
+export default App;

@@ -3,7 +3,7 @@ import MovieCard from './MovieCard';
 
 const MovieList = ({ films }) => {
 return (
-    <div className="liste-films">
+    <div className="liste-films d-flex flex-wrap justify-content">
         {films.map((film, index) => (
         <MovieCard
             key={index}
@@ -11,6 +11,7 @@ return (
             description={film.description}
             posterURL={film.posterURL}
             note={film.note}
+            
         />
         ))}
     </div>

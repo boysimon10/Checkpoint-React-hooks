@@ -15,19 +15,33 @@ const Filter = ({ handleFilter }) => {
   };
 
   return (
-    <div className="filtrer">
-      <input
-        type="text"
-        placeholder="Filtrer par titre"
-        value={filtreTitre}
-        onChange={handleChangeTitre}
-      />
-      <input
-        type="number"
-        placeholder="Filtrer par note"
-        value={filtreNote}
-        onChange={handleChangeNote}
-      />
+    <div className="container mt-4">
+      <div className="row">
+        <div className="col-md-6 mb-3">
+          <label htmlFor="titreInput" className="form-label">Filtrer par titre</label>
+          <input
+            type="text"
+            className="form-control"
+            id="titreInput"
+            placeholder="Entrez le titre"
+            value={filtreTitre}
+            onChange={handleChangeTitre}
+          />
+        </div>
+        <div className="col-md-6 mb-3">
+          <label htmlFor="noteInput" className="form-label">Filtrer par note</label>
+          <input
+            type="number"
+            className="form-control"
+            id="noteInput"
+            placeholder="Entrez la note"
+            value={filtreNote}
+            onChange={handleChangeNote}
+            min={0}
+            max={10} 
+          />
+        </div>
+      </div>
     </div>
   );
 };
