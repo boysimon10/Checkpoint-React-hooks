@@ -1,34 +1,41 @@
 import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+// Composant AddMovie pour ajouter un nouveau film
 const AddMovie = ({ addFilm }) => {
-const [nouveauFilm, setNouveauFilm] = useState({
+  // État local pour le nouveau film à ajouter
+  const [nouveauFilm, setNouveauFilm] = useState({
     titre: '',
     description: '',
     posterURL: '',
     note: 0,
   });
 
-const handleChange = (e) => {
+  // Fonction pour gérer les changements dans les champs de saisie
+  const handleChange = (e) => {
     const { name, value } = e.target;
     setNouveauFilm({ ...nouveauFilm, [name]: value });
   };
 
+  // Fonction pour soumettre le formulaire et ajouter le nouveau film
   const handleSubmit = (e) => {
     e.preventDefault();
-    addFilm(nouveauFilm);
+    addFilm(nouveauFilm); // Appel de la fonction addFilm pour ajouter le nouveau film
+    // Réinitialisation des champs après l'ajout du film
     setNouveauFilm({
-        titre: '',
-        description: '',
-        posterURL: '',
-        note: 0,
+      titre: '',
+      description: '',
+      posterURL: '',
+      note: 0,
     });
   };
 
+  // Rendu du formulaire d'ajout de film
   return (
     <div className="container mt-4">
       <h2>Ajouter un film</h2>
       <form onSubmit={handleSubmit}>
+        {/* Champ pour le titre du film */}
         <div className="mb-3">
           <input
             type="text"
@@ -40,6 +47,7 @@ const handleChange = (e) => {
             required
           />
         </div>
+        {/* Champ pour la description du film */}
         <div className="mb-3">
           <input
             type="text"
@@ -51,6 +59,7 @@ const handleChange = (e) => {
             required
           />
         </div>
+        {/* Champ pour l'URL du poster du film */}
         <div className="mb-3">
           <input
             type="text"
@@ -62,6 +71,7 @@ const handleChange = (e) => {
             required
           />
         </div>
+        {/* Champ pour la note du film */}
         <div className="mb-3">
           <input
             type="number"
@@ -75,10 +85,11 @@ const handleChange = (e) => {
             required
           />
         </div>
+        {/* Bouton pour ajouter le film */}
         <button type="submit" className="btn btn-primary">Ajouter le film</button>
       </form>
     </div>
   );
 };
 
-export default AddMovie;
+export default AddMovie; 
